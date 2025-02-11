@@ -6,8 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.KeyboardType
@@ -41,10 +45,23 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             .padding(16.dp),
         verticalArrangement = Arrangement.Center
     ) {
+
+        Text(
+            text = "Login",
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 24.dp)
+                .wrapContentWidth(Alignment.CenterHorizontally)
+        )
+
         OutlinedTextField(
             value = username,
             onValueChange = { username = it },
             label = { Text("Username") },
+            trailingIcon = {
+                Icon(imageVector = Icons.Default.Email, contentDescription = "Email Icon")
+            },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -54,6 +71,9 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
+            trailingIcon = {
+                Icon(imageVector = Icons.Default.Lock, contentDescription = "Lock Icon")
+            },
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             modifier = Modifier.fillMaxWidth()
@@ -83,13 +103,5 @@ fun LoginScreen(modifier: Modifier = Modifier) {
         ) {
             Text("Login")
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun LoginScreenPreview() {
-    LoginForm3Theme {
-        LoginScreen()
     }
 }
